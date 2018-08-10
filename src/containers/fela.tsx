@@ -10,6 +10,7 @@ import friendlyPseudoClass from "fela-plugin-friendly-pseudo-class";
 import LVHA from "fela-plugin-lvha";
 
 import DefaultTheme from "../theme";
+import randomTheme from "../theme/random";
 
 const renderer = createRenderer({
   enhancers: [
@@ -27,12 +28,32 @@ const renderer = createRenderer({
   ]
 });
 
-export default class FelaProvider extends React.Component<{ children: any }> {
+export default class FelaProvider extends React.Component<
+  { children: any },
+  { randomTheme: any }
+> {
+  constructor(props: any) {
+    super(props);
+    this.state = { randomTheme: {} };
+  }
+
+  public componentDidMount() {
+    setInterval(() => this.randomizeTheme(), 500);
+  }
+
+  public randomizeTheme = () => {
+    this.setState({ randomTheme: randomTheme() });
+  };
+
   public render() {
     return (
       <Provider renderer={renderer}>
-        <ThemeProvider theme={_.merge({}, DefaultTheme)}>
-          {this.props.children}
+        <ThemeProvider
+          theme={_.merge({}, DefaultTheme, this.state.randomTheme)}
+        >
+          {React.cloneElement(this.props.children, {
+            randomizeTheme: this.randomizeTheme
+          })}
         </ThemeProvider>
       </Provider>
     );
