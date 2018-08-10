@@ -12,8 +12,6 @@ interface IFelaProps {
 }
 
 interface IButtonProps {
-  text?: string;
-  loading?: boolean;
   transparent?: boolean; // no background, no border
   inverse?: boolean;
   intent?: "primary" | "default";
