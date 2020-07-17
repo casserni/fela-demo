@@ -8,7 +8,7 @@
     "fela-beautifier": "^5.0.15",
     "fela-plugin-friendly-pseudo-class": "^5.0.17",
     "fela-plugin-lvha": "^5.0.15",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.19",
     "prettier": "^1.14.2",
     "randomcolor": "^0.5.3",
     "react": "^16.4.2",
